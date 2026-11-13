@@ -174,4 +174,46 @@
     lb.addEventListener('touchstart', function (ev) { sx = ev.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend', function (ev) { if (sx === null) return; var dx = ev.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; });
   }
+
+  /* 링크 복사: '사이트 그대로' 또는 '이 영상만' 골라서 */
+  var share = $('#share');
+  if (share) {
+    var sBtn = $('.share-btn', share), sMenu = $('.share-menu', share), sLabel = $('.share-label > span', share), toast = $('#toast'), tTimer = null;
+    var items = $$('[role="menuitem"]', sMenu);
+    var setOpen = function (o) { sMenu.hidden = !o; sBtn.setAttribute('aria-expanded', o ? 'true' : 'false'); };
+    sBtn.addEventListener('click', function () { setOpen(sMenu.hidden); });
+    sBtn.addEventListener('keydown', function (ev) { if (ev.key === 'ArrowDown') { ev.preventDefault(); ev.stopPropagation(); setOpen(true); items[0].focus(); } });
+    document.addEventListener('click', function (ev) { if (!sMenu.hidden && !share.contains(ev.target)) setOpen(false); });
+    share.addEventListener('keydown', function (ev) {
+      if (sMenu.hidden) return;
+      var i = items.indexOf(document.activeElement);
+      if (ev.key === 'Escape') { setOpen(false); sBtn.focus(); }
+      else if (ev.key === 'ArrowDown') { ev.preventDefault(); items[(i + 1) % items.length].focus(); }
+      else if (ev.key === 'ArrowUp') { ev.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+    });
+    share.addEventListener('focusout', function (ev) { if (!sMenu.hidden && ev.relatedTarget && !share.contains(ev.relatedTarget)) setOpen(false); });
+    var copy = function (text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+      return new Promise(function (res, rej) {
+        var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+        document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+        var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta); if (ok) res(); else rej();
+      });
+    };
+    var done = function (msg) {
+      share.classList.add('done'); sLabel.textContent = '복사했어요';
+      if (toast) { toast.textContent = msg; toast.classList.add('show'); }
+      clearTimeout(tTimer);
+      tTimer = setTimeout(function () { share.classList.remove('done'); sLabel.textContent = '링크 복사'; if (toast) toast.classList.remove('show'); }, 2600);
+    };
+    items.forEach(function (it) {
+      it.addEventListener('click', function () {
+        var url = it.dataset.url;
+        setOpen(false); sBtn.focus({ preventScroll: true });
+        copy(url).then(function () { done(it.dataset.done); }, function () { window.prompt('이 링크를 복사해 보내세요', url); });
+      });
+    });
+  }
 })();

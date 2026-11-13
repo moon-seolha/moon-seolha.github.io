@@ -8,13 +8,19 @@
 <!-- 공개 범위를 정하기 전까지 검색엔진 노출 막음 (공개하려면 이 줄 삭제) -->
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#121110">
+<link rel="icon" href="../assets/icon/icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../assets/icon/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="배우 문설하">
+<meta name="application-name" content="배우 문설하">
 <meta property="og:title" content="문설하 · 너나들이">
 <meta property="og:description" content="배우 문설하 · 드라마 · 영희 역 · 2026 · 2:04">
 <meta property="og:image" content="https://moon-seolha.github.io/assets/office-poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=d1d88d68d4">
+<link rel="stylesheet" href="../assets/site.css?v=3876adee54">
 <script>
   document.documentElement.classList.add('js');
   try { var t = localStorage.getItem('msh-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
@@ -36,6 +42,13 @@
     <div class="player"><video controls playsinline preload="metadata" poster="../assets/office-poster.jpg"><source src="../assets/office.mp4" type="video/mp4">이 브라우저에서는 영상을 재생할 수 없습니다.</video></div>
     <div class="watch-head">
       <h1 class="watch-title">너나들이</h1>
+      <div class="share" id="share">
+        <button type="button" class="btn share-btn" aria-haspopup="true" aria-expanded="false" aria-controls="share-menu"><svg class="ico i-link" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><svg class="ico i-check" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="share-label" data-alt="복사했어요"><span>링크 복사</span></span><svg class="ico i-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="share-menu" id="share-menu" role="menu" aria-label="보낼 링크 고르기" hidden>
+          <button type="button" role="menuitem" data-url="https://moon-seolha.github.io/v/office.html" data-done="‘사이트 그대로’ 링크를 복사했어요"><b>사이트 그대로</b><span>아래 다른 영상 목록까지 함께 보여요</span></button>
+          <button type="button" role="menuitem" data-url="https://moon-seolha.github.io/clip/office.html" data-done="‘이 영상만’ 링크를 복사했어요"><b>이 영상만</b><span>목록 없이 이 영상만 보여요</span></button>
+        </div>
+      </div>
       <p class="watch-meta">드라마 · 영희 역 · 2026 · 2:04</p>
       
     </div>
@@ -66,11 +79,12 @@
 </a></div>
     </section>
   </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </main>
 <footer class="foot"><div class="wrap">
   <span>© 2026 문설하</span>
   <span><a href="tel:01085916571">010-8591-6571</a> · <a href="mailto:heyjoon99@naver.com">heyjoon99@naver.com</a></span>
 </div></footer>
-<script src="../assets/site.js?v=6a0b8e08cc"></script>
+<script src="../assets/site.js?v=3e066e0947"></script>
 </body>
 </html>
