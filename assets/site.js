@@ -75,24 +75,29 @@
     $$('.vgrid').forEach(function (g) { $$('.vcard', g).forEach(function (c, i) { c.classList.add('reveal'); c.style.setProperty('--d', (i % 3) * 0.08 + 's'); ro.observe(c); }); });
   } else { reveals.forEach(function (el) { el.classList.add('in'); }); }
 
-  /* 미리보기 영상: 화면에 보일 때만 소리 없이 재생 */
-  var previews = $$('video[data-src]');
-  if (!reduce && IO) {
-    var vo = new IntersectionObserver(function (es) {
+  /* 미리보기 영상·첫 영상: 화면에 보일 때만 소리 없이 재생 (휴대폰도 PC와 같게 — '동작 줄이기'와 관계없이)
+     저전력 모드·앱 안 브라우저처럼 자동재생이 막히면 화면을 처음 터치할 때 다시 재생 */
+  var blocked = [];
+  var tryPlay = function (v) {
+    v.muted = true;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { if (blocked.indexOf(v) < 0) blocked.push(v); });
+  };
+  var resume = function () { blocked.splice(0).forEach(function (v) { if (v.dataset.vis === '1') tryPlay(v); }); };
+  ['touchend', 'click', 'keydown'].forEach(function (t) { document.addEventListener(t, resume, { capture: true, passive: true }); });
+  var watch = function (v, th) {
+    if (!IO) { if (!v.src && v.dataset.src) v.src = v.dataset.src; v.dataset.vis = '1'; tryPlay(v); return; }
+    new IntersectionObserver(function (es) {
       es.forEach(function (en) {
-        var v = en.target;
-        if (en.isIntersecting) { if (!v.src) v.src = v.dataset.src; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        v.dataset.vis = en.isIntersecting ? '1' : '';
+        if (en.isIntersecting) { if (!v.src && v.dataset.src) v.src = v.dataset.src; tryPlay(v); }
         else if (!v.paused) v.pause();
       });
-    }, { threshold: .35 });
-    previews.forEach(function (v) { v.muted = true; vo.observe(v); });
-  }
+    }, { threshold: th }).observe(v);
+  };
+  $$('video[data-src]').forEach(function (v) { v.muted = true; watch(v, .35); });
   var reel = $('.reel-video');
-  if (reel) {
-    reel.muted = true;
-    if (reduce) { reel.removeAttribute('autoplay'); reel.pause(); }
-    else if (IO) new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { var p = reel.play(); if (p && p.catch) p.catch(function () {}); } else reel.pause(); }); }, { threshold: .2 }).observe(reel);
-  }
+  if (reel) { reel.muted = true; watch(reel, .2); }
 
   /* 현장 띠: 끊김 없이 계속 흐름 · 마우스를 올리면 천천히 · 끌거나 밀어서 넘기기 */
   var mqBox = $('#marquee');

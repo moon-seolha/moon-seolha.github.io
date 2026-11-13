@@ -368,8 +368,8 @@ dialog.lb::backdrop { background: rgba(0, 0, 0, .7); }
   .list li { grid-template-columns: 56px minmax(0, 1fr); font-size: 16.5px; }
   .contact { padding-bottom: 72px; }
   .contact-card { grid-template-columns: 1fr; }
-  .contact-photo { min-height: 0; aspect-ratio: 4 / 3; }
-  .contact-photo img { object-position: 62% 18%; }
+  .contact-photo { min-height: 0; aspect-ratio: 4 / 5; }
+  .contact-photo img { object-position: 50% 100%; }   /* 전신 898: 머리 위·발 아래 여백이 같게 */
   .contact-body { padding: 30px 22px 26px; gap: 26px; }
   .cline { gap: 14px; }
   .cicon { width: 44px; height: 44px; }
