@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=efba0d1224">
+<link rel="stylesheet" href="assets/site.css?v=030aec3d4b">
 <script>
   document.documentElement.classList.add('js');
   try { var t = localStorage.getItem('msh-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
@@ -61,7 +61,7 @@
       <video class="reel-video" muted loop playsinline autoplay preload="auto" poster="assets/reel-poster.jpg"><source src="assets/reel.mp4" type="video/mp4"></video>
       <span class="reel-shade"></span>
       <span class="reel-copy">
-        <span class="reel-kicker">드라마 · 독백 · 홍보 · 영화 · 연극</span>
+        <span class="reel-kicker">자기소개 · 드라마 · 독백 · 홍보 · 영화 · 연극</span>
         <span class="reel-cta">연기 영상 보러가기 <span class="arrow">→</span></span>
       </span>
     </a>
@@ -70,25 +70,28 @@
   <section class="sec" id="videos" aria-labelledby="videos-title">
     <div class="wrap">
       <div class="sec-head reveal"><h2 id="videos-title">영상</h2><a class="more" href="videos.html">전체 목록 보기 →</a></div>
-      <div class="vgrid"><a class="vcard wide" href="v/office.html">
+      <div class="vgrid"><a class="vcard wide" href="v/intro.html">
+  <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/intro.jpg" data-src="assets/prev/intro.mp4"></video><span class="dur">0:30</span><span class="play" aria-hidden="true">보기 →</span></span>
+  <span class="vtext"><span class="vtitle">자기소개</span><span class="vmeta">인사 · 정면 · 측면</span></span>
+</a><a class="vcard narrow" href="v/office.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/office.jpg" data-src="assets/prev/office.mp4"></video><span class="dur">2:04</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">너나들이</span><span class="vmeta">드라마 · 영희 역 · 2026</span></span>
 </a><a class="vcard narrow" href="v/monologue.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/monologue.jpg" data-src="assets/prev/monologue.mp4"></video><span class="dur">1:42</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">프로필 독백</span><span class="vmeta">독백</span></span>
-</a><a class="vcard narrow" href="v/yangcheon.html">
+</a><a class="vcard wide" href="v/yangcheon.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/yangcheon.jpg" data-src="assets/prev/yangcheon.mp4"></video><span class="dur">0:30</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">양천구 소개 영상</span><span class="vmeta">홍보 · 2025</span></span>
-</a><a class="vcard wide" href="v/uridongne.html">
+</a><a class="vcard half" href="v/uridongne.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/film-uridongne.jpg" data-src="assets/prev/film-uridongne.mp4"></video><span class="dur">0:48</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">우리 동네 사람들</span><span class="vmeta">단편 영화 · 선옥 역 · 2018</span></span>
-</a><a class="vcard third" href="v/daebudo.html">
+</a><a class="vcard half" href="v/daebudo.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/film-daebudo.jpg" data-src="assets/prev/film-daebudo.mp4"></video><span class="dur">0:46</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">대부도에서</span><span class="vmeta">장편 영화 · 소희 엄마 역 · 2018</span></span>
-</a><a class="vcard third" href="v/stage.html">
+</a><a class="vcard half" href="v/stage.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/stage-1.jpg" data-src="assets/prev/stage-1.mp4"></video><span class="dur">0:24</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">연극 무대</span><span class="vmeta">연극</span></span>
-</a><a class="vcard third" href="v/curtain.html">
+</a><a class="vcard half" href="v/curtain.html">
   <span class="vthumb"><video muted loop playsinline preload="none" poster="assets/prev/stage-2.jpg" data-src="assets/prev/stage-2.mp4"></video><span class="dur">0:45</span><span class="play" aria-hidden="true">보기 →</span></span>
   <span class="vtext"><span class="vtitle">연극 커튼콜</span><span class="vmeta">연극</span></span>
 </a></div>
@@ -115,6 +118,7 @@
     <div class="wrap">
       <div class="band-award reveal">
         <p class="award-line"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5h8v5.5a4 4 0 0 1-8 0z"/><path d="M8 5.5H5.5a2.2 2.2 0 0 0 .2 4.4H8.3"/><path d="M16 5.5h2.5a2.2 2.2 0 0 1-.2 4.4h-2.6"/><path d="M12 13v3.5"/><path d="M9.5 20.5h5"/><path d="M10.2 16.5h3.6l.5 4h-4.6z"/></svg><span>제12회 서울시민연극제 최우수 연기상<span class="award-year">2026</span></span></p>
+        <p class="award-line sub"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5h8v5.5a4 4 0 0 1-8 0z"/><path d="M8 5.5H5.5a2.2 2.2 0 0 0 .2 4.4H8.3"/><path d="M16 5.5h2.5a2.2 2.2 0 0 1-.2 4.4h-2.6"/><path d="M12 13v3.5"/><path d="M9.5 20.5h5"/><path d="M10.2 16.5h3.6l.5 4h-4.6z"/></svg><span>매일경제 시니어 모델 콘테스트 뷰티&nbsp;오브&nbsp;시니어상<span class="award-year">2025 · SFMA BIG SHOW</span></span></p>
       </div>
       <div class="band-grid">
       <div class="fact reveal">
